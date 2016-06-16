@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"/>
+    <style>
+.password-verdict{
+color:#000;
+}
+</style>
+    <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII"/>
+    <title>Zooplus Assignment</title>
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Zooplus</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <h3>Last queries</h3>
+    <table class="table">
+        <thead>
+        <th>From currency</th>
+        <th>To currency</th>
+        <th>Rate</th>
+        <th>Date</th>
+        </thead>
+        <tbody>
+        <th:block th:each="history : ${history}">
+            <tr>
+                <td th:text="${history.fromCurrency}">John</td>
+                <td th:text="${history.toCurrency}">Doe</td>
+                <td th:text="${history.rate}">john@example.com</td>
+                <td th:text="${history.ts}"></td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+</div>
+<div class="container">
+    <div >
+
+        <br/>
+
+        <form action="#" th:action="@{/secure/home/latest}" method='POST' th:object="${rateModel}">
+
+<select th:field="*{fromCurrency}">
+    <option th:each="currency : ${currencies}"
+            th:value="${currency.currencyCode}"
+            th:text="${currency.displayName}">Wireframe</option>
+</select>
+
+<select th:field="*{toCurrency}">
+    <option th:each="currency : ${currencies}"
+            th:value="${currency.currencyCode}"
+            th:text="${currency.displayName}">Wireframe</option>
+</select>
+            <button type="submit" class="btn btn-primary">Get Rate</button>
+
+        </form>
+        </div>
+    </div>
+</body>
+</html>
